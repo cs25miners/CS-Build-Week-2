@@ -19,7 +19,7 @@ while len(copy) < 500:
   print("-------------------------COPY LENGTH-------------------------------", len(copy))
   curCooldown=player.currentRoom['cooldown']
   time.sleep(curCooldown)
-  if len(player.currentRoom['items']) > 0: # and player's items < 10
+  if len(player.currentRoom['items']) > 0 and player.info['items'] < 10:
     player.take()
     time.sleep(8)
   time.sleep(2)
@@ -42,14 +42,21 @@ while len(copy) < 500:
       roomObj=player.currentRoom
       rooms[curRoom]=roomObj
 
-  if "Shop" in curRoom['title']:
+  if "Shop" in player.currentRoom['title'] and player.info['encumbrance'] > 0:
     player.sell()
 
-  if "Changer" in curRoom['title']: #and coins > 1000
-    player.name_change()  
+  if "Changer" in player.currentRoom['title'] and player.info['gold'] >= 1000: 
+    player.name_change()
 
-  if player.name == "[Jon-Solari]" and curRoom['title'] == "Wishing Well":
+  if player.name == "[Jon-Solari]" and player.currentRoom['title'] == "Wishing Well":
     player.examine()
+    break
+
+  # if player.status['bodywear'] > 0:
+  #   player.wear_clothes()
+
+  # if player.status['footwear'] > 0:
+  #   player.wear_shoes()
 
   if 'n' in copy[curRoom] and curExits['n'] == 'unknown':
     print(copy[curRoom], "Currently")

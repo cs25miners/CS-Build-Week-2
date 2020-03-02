@@ -13,6 +13,7 @@ class Player:
     def __init__(self, name, startingRoom):
         self.name = name
         self.currentRoom = startingRoom
+        self.info = {}
 
 
     def travel(self, direction):
@@ -58,6 +59,7 @@ class Player:
         res=requests.post(
             'https://lambda-treasure-hunt.herokuapp.com/api/adv/status/', headers=headers
             )
+        self.info = res.text
         print("-------------------------------STATUS-------------------------------------", json.loads(res.text))
         
     def sell(self):
@@ -91,3 +93,15 @@ class Player:
         'https://lambda-treasure-hunt.herokuapp.com/api/adv/examine/', headers=headers, data=json.dumps(data)
         )
         print("--------", res.text, "WISHING WELL INFO")
+
+    # def wear_clothes(self):
+    #     data={"name": self.info['bodywear'][0]}
+    #     res=requests.post(
+    #     'https://lambda-treasure-hunt.herokuapp.com/api/adv/wear/', headers=headers, data=json.dumps(data)
+    #     )
+
+    # def wear_shoes(self):
+    #     data={"name": self.info['footwear'][0]}
+    #     res=requests.post(
+    #     'https://lambda-treasure-hunt.herokuapp.com/api/adv/wear/', headers=headers, data=json.dumps(data)
+    #     )
