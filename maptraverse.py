@@ -42,6 +42,22 @@ while len(copy) < 500:
         roomObj = player.currentRoom
         rooms[curRoom] = roomObj
 
+    if len(player.currentRoom['items']) > 0:
+        print("********* ITEMS FOUND **********")
+        break
+        # player.take()
+
+    if player.currentRoom['title'] == "Shop":
+        player.sell()
+
+    if "Changer" in player.currentRoom['title'] and player.status['gold'] >= 1000:
+        player.name_change()
+        break
+
+    if player.name == "[Cameron-Alvarado]" and player.currentRoom['title'] == "Wishing Well":
+        player.examine()
+        break
+
     if 'n' in copy[curRoom] and curExits['n'] == 'unknown':
         print(copy[curRoom], "Currently")
         if curExits['n'] == 'unknown':

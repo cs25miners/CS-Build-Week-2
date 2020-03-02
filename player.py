@@ -75,13 +75,13 @@ class Player:
         )
 
     def name_change(self):
-        data1 = {"name": "[Cameron]"}
+        data1 = {"name": "[Cameron-Alvarado]"}
         res = requests.post(
             'https://lambda-treasure-hunt.herokuapp.com/api/adv/change_name/', headers=headers, data=json.dumps(data1)
         )
         print("--------", res.text, "NAME CHANGE")
         time.sleep(35)
-        data2 = {"name": "[Cameron]", "confirm": "name changed"}
+        data2 = {"name": "[Cameron-Alvarado]", "confirm": "name changed"}
         res = requests.post(
             'https://lambda-treasure-hunt.herokuapp.com/api/adv/change_name/', headers=headers, data=json.dumps(data2)
         )
@@ -93,3 +93,15 @@ class Player:
             'https://lambda-treasure-hunt.herokuapp.com/api/adv/examine/', headers=headers, data=json.dumps(data)
         )
         print("--------", res.text, "WISHING WELL INFO")
+
+    def wear_clothes(self):
+        data1 = {"name": self.status['bodywear'][0]}
+        res = requests.post(
+            'https://lambda-treasure-hunt.herokuapp.com/api/adv/wear/', headers=headers, data=json.dumps(data1)
+        )
+
+    def wear_shoes(self):
+        data1 = {"name": self.status['footwear'][0]}
+        res = requests.post(
+            'https://lambda-treasure-hunt.herokuapp.com/api/adv/wear/', headers=headers, data=json.dumps(data1)
+        )
