@@ -27,8 +27,7 @@ class Player:
         if direction == "w":
             data = {"direction": "w"}
         res = requests.post(
-            # 'https://lambda-treasure-hunt.herokuapp.com/api/adv/move/', headers=headers, data=json.dumps(data)
-            'http://127.0.0.1:8000/api/adv/move/', headers=headers, data=json.dumps(data)
+            'https://lambda-treasure-hunt.herokuapp.com/api/adv/move/', headers=headers, data=json.dumps(data)
         )
 
         nextRoom = json.loads(res.text)
@@ -37,9 +36,7 @@ class Player:
 
     def init(self):
         res = requests.get(
-            # 'https://lambda-treasure-hunt.herokuapp.com/api/adv/init/', headers=headers
-            'http://127.0.0.1:8000/api/adv/init/', headers=headers
-
+            'https://lambda-treasure-hunt.herokuapp.com/api/adv/init/', headers=headers
         )
         nextRoom = json.loads(res.text)
         self.currentRoom = nextRoom
