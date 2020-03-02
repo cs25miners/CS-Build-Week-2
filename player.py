@@ -43,54 +43,55 @@ class Player:
         nextRoom = json.loads(res.text)
         self.currentRoom = nextRoom
 
-    # def take(self):
-    #     if len(self.currentRoom['items']) > 0:
-    #         data={"name": "treasure"}
-    #         res=requests.post(
-    #         'https://lambda-treasure-hunt.herokuapp.com/api/adv/take/', headers=headers, data=json.dumps(data)
-    #         )
+    def take(self):
+        if len(self.currentRoom['items']) > 0:
+            data = {"name": "treasure"}
+            res = requests.post(
+                'https://lambda-treasure-hunt.herokuapp.com/api/adv/take/', headers=headers, data=json.dumps(data)
+            )
 
-    # def drop(self):
-    #     data={"name": "treasure"}
-    #     res=requests.post(
-    #     'https://lambda-treasure-hunt.herokuapp.com/api/adv/drop/', headers=headers, data=json.dumps(data)
-    #     )
-    #     print("-------", res.text, "DROPPING TREASURE")
+    def drop(self):
+        data = {"name": "treasure"}
+        res = requests.post(
+            'https://lambda-treasure-hunt.herokuapp.com/api/adv/drop/', headers=headers, data=json.dumps(data)
+        )
+        print("-------", res.text, "DROPPING TREASURE")
 
-    # def status(self):
-    #     res=requests.post(
-    #         'https://lambda-treasure-hunt.herokuapp.com/api/adv/status/', headers=headers
-    #         )
-    #     print("-------------------------------STATUS-------------------------------------", json.loads(res.text))
+    def status(self):
+        res = requests.post(
+            'https://lambda-treasure-hunt.herokuapp.com/api/adv/status/', headers=headers
+        )
+        print("-------------------------------STATUS-------------------------------------",
+              json.loads(res.text))
 
-    # def sell(self):
-    #     data1={"name": "treasure"}
-    #     res=requests.post(
-    #     'https://lambda-treasure-hunt.herokuapp.com/api/adv/sell/', headers=headers, data=json.dumps(data1)
-    #     )
-    #     print("-------", res.text, "SELLING MY TREASURE")
-    #     time.sleep(5)
-    #     data2={"name": "treasure", "confirm": "name changed"}
-    #     res=requests.post(
-    #     'https://lambda-treasure-hunt.herokuapp.com/api/adv/sell/', headers=headers, data=json.dumps(data2)
-    #     )
+    def sell(self):
+        data1 = {"name": "treasure"}
+        res = requests.post(
+            'https://lambda-treasure-hunt.herokuapp.com/api/adv/sell/', headers=headers, data=json.dumps(data1)
+        )
+        print("-------", res.text, "SELLING MY TREASURE")
+        time.sleep(5)
+        data2 = {"name": "treasure", "confirm": "name changed"}
+        res = requests.post(
+            'https://lambda-treasure-hunt.herokuapp.com/api/adv/sell/', headers=headers, data=json.dumps(data2)
+        )
 
-    # def name_change(self):
-    #     data1={"name":"[Cameron]"}
-    #     res=requests.post(
-    #     'https://lambda-treasure-hunt.herokuapp.com/api/adv/change_name/', headers=headers, data=json.dumps(data1)
-    #     )
-    #     print("--------", res.text, "NAME CHANGE")
-    #     time.sleep(35)
-    #     data2={"name":"[Cameron]", "confirm": "name changed"}
-    #     res=requests.post(
-    #     'https://lambda-treasure-hunt.herokuapp.com/api/adv/change_name/', headers=headers, data=json.dumps(data2)
-    #     )
-    #     print("--------", res.text, "NAME CHANGE")
+    def name_change(self):
+        data1 = {"name": "[Cameron]"}
+        res = requests.post(
+            'https://lambda-treasure-hunt.herokuapp.com/api/adv/change_name/', headers=headers, data=json.dumps(data1)
+        )
+        print("--------", res.text, "NAME CHANGE")
+        time.sleep(35)
+        data2 = {"name": "[Cameron]", "confirm": "name changed"}
+        res = requests.post(
+            'https://lambda-treasure-hunt.herokuapp.com/api/adv/change_name/', headers=headers, data=json.dumps(data2)
+        )
+        print("--------", res.text, "NAME CHANGE")
 
-    # def examine(self):
-    #     data={"name":"Wishing Well"}
-    #     res=requests.post(
-    #     'https://lambda-treasure-hunt.herokuapp.com/api/adv/examine/', headers=headers, data=json.dumps(data)
-    #     )
-    #     print("--------", res.text, "WISHING WELL INFO")
+    def examine(self):
+        data = {"name": "Wishing Well"}
+        res = requests.post(
+            'https://lambda-treasure-hunt.herokuapp.com/api/adv/examine/', headers=headers, data=json.dumps(data)
+        )
+        print("--------", res.text, "WISHING WELL INFO")

@@ -1,21 +1,25 @@
 import hashlib
 import requests
 import json
-import time 
+import time
 import json
 
-api_key = 'Token 5e85b3283687cccc253c364cc2a4fa6761ac65cf'
+api_key = 'Token 530ea0e7002d91818d4bf1044726330f50e557cb'
 
 headers = {
     'Authorization': api_key,
     'Content-Type': 'application/json'
 }
+
+
 def get_last_proof():
-    response = requests.get('https://lambda-treasure-hunt.herokuapp.com/api/bc/last_proof/', headers=headers)
-    
-    res=json.loads(response.text)
+    response = requests.get(
+        'https://lambda-treasure-hunt.herokuapp.com/api/bc/last_proof/', headers=headers)
+
+    res = json.loads(response.text)
     print("LAST PROOF", res)
     return res
+
 
 def proof_of_work(last_proof):
     """
@@ -24,8 +28,8 @@ def proof_of_work(last_proof):
 # Does hash(last_proof, proof) contain N leading zeroes, where N is the current difficulty level?
     """
     print(last_proof, "<---------LAST PROOF HERE")
-    the_last_proof=last_proof['proof']
-    difficulty=last_proof['difficulty']
+    the_last_proof = last_proof['proof']
+    difficulty = last_proof['difficulty']
     print("Searching for next proof")
     last_hash = json.dumps(the_last_proof)
     proof = 0
@@ -33,12 +37,13 @@ def proof_of_work(last_proof):
         proof += 1
 
     print("MY PROOF", proof)
-   
+
     new_proof = {"proof": int(proof)}
-    response = requests.post('https://lambda-treasure-hunt.herokuapp.com/api/bc/mine/', headers=headers, data=new_proof)
+    response = requests.post(
+        'https://lambda-treasure-hunt.herokuapp.com/api/bc/mine/', headers=headers, data=new_proof)
 
     print("Did I mine a coin?", response)
-    res=json.loads(response.text)  
+    res = json.loads(response.text)
     print(res)
     time.sleep(res['cooldown'])
     return res
