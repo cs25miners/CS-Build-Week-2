@@ -2,7 +2,7 @@ import requests
 import json
 import time
 
-api_key = 'Token 5e85b3283687cccc253c364cc2a4fa6761ac65cf'
+api_key = 'Token 6ef956aefb4e3f40b45423a966e5ff98eed541bb'
 
 headers = {
     'Authorization': api_key,
@@ -13,6 +13,8 @@ class Player:
     def __init__(self, name, startingRoom):
         self.name = name
         self.currentRoom = startingRoom
+
+
     def travel(self, direction):
         print("Direction", direction)
         if direction == "n":
@@ -38,54 +40,54 @@ class Player:
         nextRoom=json.loads(res.text)
         self.currentRoom=nextRoom
 
-    # def take(self):
-    #     if len(self.currentRoom['items']) > 0:
-    #         data={"name": "treasure"}
-    #         res=requests.post(
-    #         'https://lambda-treasure-hunt.herokuapp.com/api/adv/take/', headers=headers, data=json.dumps(data)
-    #         )
+    def take(self):
+        if len(self.currentRoom['items']) > 0:
+            data={"name": "treasure"}
+            res=requests.post(
+            'https://lambda-treasure-hunt.herokuapp.com/api/adv/take/', headers=headers, data=json.dumps(data)
+            )
 
-    # def drop(self):
-    #     data={"name": "treasure"}
-    #     res=requests.post(
-    #     'https://lambda-treasure-hunt.herokuapp.com/api/adv/drop/', headers=headers, data=json.dumps(data)
-    #     )
-    #     print("-------", res.text, "DROPPING TREASURE")
+    def drop(self):
+        data={"name": "treasure"}
+        res=requests.post(
+        'https://lambda-treasure-hunt.herokuapp.com/api/adv/drop/', headers=headers, data=json.dumps(data)
+        )
+        print("-------", res.text, "DROPPING TREASURE")
 
-    # def status(self):
-    #     res=requests.post(
-    #         'https://lambda-treasure-hunt.herokuapp.com/api/adv/status/', headers=headers
-    #         )
-    #     print("-------------------------------STATUS-------------------------------------", json.loads(res.text))
+    def status(self):
+        res=requests.post(
+            'https://lambda-treasure-hunt.herokuapp.com/api/adv/status/', headers=headers
+            )
+        print("-------------------------------STATUS-------------------------------------", json.loads(res.text))
         
-    # def sell(self):
-    #     data1={"name": "treasure"}
-    #     res=requests.post(
-    #     'https://lambda-treasure-hunt.herokuapp.com/api/adv/sell/', headers=headers, data=json.dumps(data1)
-    #     )
-    #     print("-------", res.text, "SELLING MY TREASURE")
-    #     time.sleep(5)
-    #     data2={"name": "treasure", "confirm": "name changed"}
-    #     res=requests.post(
-    #     'https://lambda-treasure-hunt.herokuapp.com/api/adv/sell/', headers=headers, data=json.dumps(data2)
-    #     )
+    def sell(self):
+        data1={"name": "treasure"}
+        res=requests.post(
+        'https://lambda-treasure-hunt.herokuapp.com/api/adv/sell/', headers=headers, data=json.dumps(data1)
+        )
+        print("-------", res.text, "SELLING MY TREASURE")
+        time.sleep(5)
+        data2={"name": "treasure", "confirm": "yes"}
+        res=requests.post(
+        'https://lambda-treasure-hunt.herokuapp.com/api/adv/sell/', headers=headers, data=json.dumps(data2)
+        )
 
-    # def name_change(self):
-    #     data1={"name":"[Blake]"}
-    #     res=requests.post(
-    #     'https://lambda-treasure-hunt.herokuapp.com/api/adv/change_name/', headers=headers, data=json.dumps(data1)
-    #     )
-    #     print("--------", res.text, "NAME CHANGE")
-    #     time.sleep(35)
-    #     data2={"name":"[Blake]", "confirm": "name changed"}
-    #     res=requests.post(
-    #     'https://lambda-treasure-hunt.herokuapp.com/api/adv/change_name/', headers=headers, data=json.dumps(data2)
-    #     )
-    #     print("--------", res.text, "NAME CHANGE")
+    def name_change(self):
+        data1={"name":"[Jon-Solari]"}
+        res=requests.post(
+        'https://lambda-treasure-hunt.herokuapp.com/api/adv/change_name/', headers=headers, data=json.dumps(data1)
+        )
+        print("--------", res.text, "NAME CHANGE")
+        time.sleep(35)
+        data2={"name":"[Jon-Solari]", "confirm": "name changed"}
+        res=requests.post(
+        'https://lambda-treasure-hunt.herokuapp.com/api/adv/change_name/', headers=headers, data=json.dumps(data2)
+        )
+        print("--------", res.text, "NAME CHANGE")
     
-    # def examine(self):
-    #     data={"name":"Wishing Well"}
-    #     res=requests.post(
-    #     'https://lambda-treasure-hunt.herokuapp.com/api/adv/examine/', headers=headers, data=json.dumps(data)
-    #     )
-    #     print("--------", res.text, "WISHING WELL INFO")
+    def examine(self):
+        data={"name":"Wishing Well"}
+        res=requests.post(
+        'https://lambda-treasure-hunt.herokuapp.com/api/adv/examine/', headers=headers, data=json.dumps(data)
+        )
+        print("--------", res.text, "WISHING WELL INFO")
