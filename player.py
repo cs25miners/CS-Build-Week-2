@@ -1,6 +1,7 @@
-import requests
 import json
 import time
+
+import requests
 
 api_key = 'Token 530ea0e7002d91818d4bf1044726330f50e557cb'
 
@@ -71,7 +72,7 @@ class Player:
         )
         print("-------", res.text, "SELLING MY TREASURE")
         time.sleep(5)
-        data2 = {"name": "treasure", "confirm": "name changed"}
+        data2 = {"name": "treasure", "confirm": "items sold"}
         res = requests.post(
             'https://lambda-treasure-hunt.herokuapp.com/api/adv/sell/', headers=headers, data=json.dumps(data2)
         )
