@@ -14,16 +14,19 @@ reverse=[]
 #-----------
 while len(copy) < 500:
   print("----------------------COPY------------------------------------", copy)
-  print("----------------------ROOMS------------------------------------", rooms)
-  print("----------------------Current room in while loop----------------", player.currentRoom)
-  print("-------------------------COPY LENGTH-------------------------------", len(copy))
+  print("----------------------ROOMS-----------------------------------", rooms)
+  print("----------------------Current room in while loop--------------", player.currentRoom)
+  print("-------------------------COPY LENGTH--------------------------", len(copy))
   curCooldown=player.currentRoom['cooldown']
   time.sleep(curCooldown)
-  if len(player.currentRoom['items']) > 0 and player.info['items'] < 10:
-    player.take()
-    time.sleep(8)
-  time.sleep(2)
+ 
   player.status()
+  print("PLAYER INFO", player.info)
+  # if len(player.currentRoom['items']) > 0 and len(player.info['items']) < 10:
+    
+  #   player.take()
+  #   time.sleep(curCooldown)
+  time.sleep(2)
   time.sleep(2)
   curRoom=player.currentRoom['room_id']
   if curRoom not in copy:
@@ -42,15 +45,21 @@ while len(copy) < 500:
       roomObj=player.currentRoom
       rooms[curRoom]=roomObj
 
-  if "Shop" in player.currentRoom['title'] and player.info['encumbrance'] > 0:
-    player.sell()
-
-  if "Changer" in player.currentRoom['title'] and player.info['gold'] >= 1000: 
-    player.name_change()
-
-  if player.name == "[Jon-Solari]" and player.currentRoom['title'] == "Wishing Well":
-    player.examine()
+  if curRoom == 119:
     break
+
+  # if player.currentRoom['title'] == "Shop" and player.info['encumbrance'] > 0:
+  #   break #player.sell()
+
+  # if player.currentRoom['title'] == "Name Changer" and player.info['gold'] >= 1000: 
+  #   break #player.name_change()
+
+  # if player.name == "[Jon-Solari]" and player.currentRoom['title'] == "Wishing Well":
+  #   player.examine()
+  #   break
+
+  # if curRoom == 0:
+  #   break
 
   # if player.status['bodywear'] > 0:
   #   player.wear_clothes()

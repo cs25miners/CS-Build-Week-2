@@ -47,7 +47,7 @@ def proof_of_work(last_proof):
 def valid_proof(last_hash, proof, difficulty):
     guess = f'{last_hash}{proof}'.encode()
     guess_hash = hashlib.sha256(guess).hexdigest()
-    return guess_hash[:difficulty] == "0" * difficulty
+    return guess_hash[difficulty:] == int("0" * difficulty)
 
 
 if __name__ == "__main__":

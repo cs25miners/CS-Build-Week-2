@@ -59,7 +59,7 @@ class Player:
         res=requests.post(
             'https://lambda-treasure-hunt.herokuapp.com/api/adv/status/', headers=headers
             )
-        self.info = res.text
+        self.info = json.loads(res.text)
         print("-------------------------------STATUS-------------------------------------", json.loads(res.text))
         
     def sell(self):
