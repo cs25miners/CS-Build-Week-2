@@ -13,9 +13,10 @@ reverse = []
 # -----------
 while len(copy) < 500:
     print("----------------------COPY------------------------------------", copy)
-    print("----------------------ROOMS------------------------------------", rooms)
-    print("----------------------Current room in while loop----------------",
-          player.currentRoom)
+    print("----------------------ROOMS------------------------------------")
+    print(rooms)
+    print("----------------------Current room in while loop----------------")
+    print(player.currentRoom)
     print("-------------------------COPY LENGTH-------------------------------", len(copy))
     curCooldown = player.currentRoom['cooldown']
     time.sleep(curCooldown)
@@ -39,91 +40,108 @@ while len(copy) < 500:
 
     if curRoom not in rooms:
         rooms[curRoom] = curRoom
-        roomObj = player.currentRoom
+        roomObj = player.currentRoom['coordinates']
         rooms[curRoom] = roomObj
 
     if len(player.currentRoom['items']) > 0:
         print("********* ITEMS FOUND **********")
-        break
+        # break
         # player.take()
 
-    if player.currentRoom['title'] == "Shop":
-        player.sell()
-
-    if "Changer" in player.currentRoom['title'] and player.status['gold'] >= 1000:
-        player.name_change()
+    if player.currentRoom['room_id'] is 250:
+        print("********* TIME TO MINE **********")
         break
 
-    if player.name == "[Cameron-Alvarado]" and player.currentRoom['title'] == "Wishing Well":
-        player.examine()
-        break
+    player.travel("s")
+    time.sleep(20)
+    player.travel("s")
+    time.sleep(20)
+    player.travel("s")
+    time.sleep(20)
+    player.travel("e")
+    time.sleep(20)
+    player.travel("e")
+    time.sleep(20)
+    player.travel("e")
+    time.sleep(20)
+    player.travel("e")
+    time.sleep(20)
+    player.travel("e")
+    time.sleep(20)
+    player.travel("e")
+    time.sleep(20)
+    player.travel("s")
+    time.sleep(20)
+    player.travel("s")
+    time.sleep(20)
+    player.travel("s")
+    time.sleep(20)
+    # if 'n' in copy[curRoom] and curExits['n'] == 'unknown':
+    #     print(copy[curRoom], "Currently")
+    #     if curExits['n'] == 'unknown':
+    #         #   time.sleep(curCooldown)
+    #         player.travel("n")
+    #         traversalPath.append("n")
+    #         newRoom = player.currentRoom['room_id']
+    #         curExits['n'] = newRoom
+    #         newExits = {}
+    #         if newRoom not in copy:
+    #             for exit in player.currentRoom['exits']:
+    #                 newExits[exit] = "unknown"
+    #                 copy[newRoom] = newExits
+    #             newExits['s'] = curRoom
+    #         reverse.append('s')
 
-    if 'n' in copy[curRoom] and curExits['n'] == 'unknown':
-        print(copy[curRoom], "Currently")
-        if curExits['n'] == 'unknown':
-            #   time.sleep(curCooldown)
-            player.travel("n")
-            traversalPath.append("n")
-            newRoom = player.currentRoom['room_id']
-            curExits['n'] = newRoom
-            newExits = {}
-            if newRoom not in copy:
-                for exit in player.currentRoom['exits']:
-                    newExits[exit] = "unknown"
-                    copy[newRoom] = newExits
-                newExits['s'] = curRoom
-            reverse.append('s')
+    # elif 's' in copy[curRoom] and curExits['s'] == 'unknown':
+    #     print(copy[curRoom], "Currently")
+    #     if curExits['s'] == 'unknown':
+    #         #   time.sleep(curCooldown)
+    #         player.travel("s")
+    #         traversalPath.append("s")
+    #         newRoom = player.currentRoom['room_id']
+    #         curExits['s'] = newRoom
+    #         newExits = {}
+    #         if newRoom not in copy:
+    #             for exit in player.currentRoom['exits']:
+    #                 newExits[exit] = "unknown"
+    #                 copy[newRoom] = newExits
+    #             newExits['n'] = curRoom
+    #         reverse.append('n')
 
-    elif 's' in copy[curRoom] and curExits['s'] == 'unknown':
-        print(copy[curRoom], "Currently")
-        if curExits['s'] == 'unknown':
-            #   time.sleep(curCooldown)
-            player.travel("s")
-            traversalPath.append("s")
-            newRoom = player.currentRoom['room_id']
-            curExits['s'] = newRoom
-            newExits = {}
-            if newRoom not in copy:
-                for exit in player.currentRoom['exits']:
-                    newExits[exit] = "unknown"
-                    copy[newRoom] = newExits
-                newExits['n'] = curRoom
-            reverse.append('n')
+    # elif 'e' in copy[curRoom] and curExits['e'] == 'unknown':
+    #     print(copy[curRoom], "Currently")
+    #     if curExits['e'] == 'unknown':
+    #         #   time.sleep(curCooldown)
+    #         player.travel("e")
+    #         traversalPath.append("e")
+    #         newRoom = player.currentRoom['room_id']
+    #         curExits['e'] = newRoom
+    #         newExits = {}
+    #         if newRoom not in copy:
+    #             for exit in player.currentRoom['exits']:
+    #                 newExits[exit] = "unknown"
+    #                 copy[newRoom] = newExits
+    #             newExits['w'] = curRoom
+    #         reverse.append('w')
 
-    elif 'e' in copy[curRoom] and curExits['e'] == 'unknown':
-        print(copy[curRoom], "Currently")
-        if curExits['e'] == 'unknown':
-            #   time.sleep(curCooldown)
-            player.travel("e")
-            traversalPath.append("e")
-            newRoom = player.currentRoom['room_id']
-            curExits['e'] = newRoom
-            newExits = {}
-            if newRoom not in copy:
-                for exit in player.currentRoom['exits']:
-                    newExits[exit] = "unknown"
-                    copy[newRoom] = newExits
-                newExits['w'] = curRoom
-            reverse.append('w')
+    # elif 'w' in copy[curRoom] and curExits['w'] == 'unknown':
+    #     print(copy[curRoom], "Currently")
+    #     if curExits['w'] == 'unknown':
+    #         #   time.sleep(curCooldown)
+    #         player.travel("w")
+    #         traversalPath.append("w")
+    #         newRoom = player.currentRoom['room_id']
+    #         curExits['w'] = newRoom
+    #         newExits = {}
+    #         if newRoom not in copy:
+    #             for exit in player.currentRoom['exits']:
+    #                 newExits[exit] = "unknown"
+    #                 copy[newRoom] = newExits
+    #             newExits['e'] = curRoom
+    #         reverse.append('e')
 
-    elif 'w' in copy[curRoom] and curExits['w'] == 'unknown':
-        print(copy[curRoom], "Currently")
-        if curExits['w'] == 'unknown':
-            #   time.sleep(curCooldown)
-            player.travel("w")
-            traversalPath.append("w")
-            newRoom = player.currentRoom['room_id']
-            curExits['w'] = newRoom
-            newExits = {}
-            if newRoom not in copy:
-                for exit in player.currentRoom['exits']:
-                    newExits[exit] = "unknown"
-                    copy[newRoom] = newExits
-                newExits['e'] = curRoom
-            reverse.append('e')
-
-    else:
-        reversal = reverse.pop()
-        # time.sleep(curCooldown)
-        player.travel(reversal)
-        traversalPath.append(reversal)
+    # else:
+    #     reversal = reverse.pop()
+    #     # time.sleep(curCooldown)
+    #     player.travel(reversal)
+    #     traversalPath.append(reversal)

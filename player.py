@@ -94,14 +94,14 @@ class Player:
         )
         print("--------", res.text, "WISHING WELL INFO")
 
-    def wear_clothes(self):
-        data1 = {"name": self.status['bodywear'][0]}
-        res = requests.post(
-            'https://lambda-treasure-hunt.herokuapp.com/api/adv/wear/', headers=headers, data=json.dumps(data1)
-        )
+    # def wear_clothes(self):
+    #     data1 = {"name": self.status['bodywear'][0]}
+    #     res = requests.post(
+    #         'https://lambda-treasure-hunt.herokuapp.com/api/adv/wear/', headers=headers, data=json.dumps(data1)
+    #     )
 
-    def wear_shoes(self):
-        data1 = {"name": self.status['footwear'][0]}
-        res = requests.post(
-            'https://lambda-treasure-hunt.herokuapp.com/api/adv/wear/', headers=headers, data=json.dumps(data1)
-        )
+    # def wear_shoes(self):
+    #     data1 = {"name": self.status['footwear'][0]}
+    #     res = requests.post(
+    #         'https://lambda-treasure-hunt.herokuapp.com/api/adv/wear/', headers=headers, data=json.dumps(data1)
+    #     )

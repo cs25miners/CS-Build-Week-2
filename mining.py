@@ -39,9 +39,8 @@ def proof_of_work(last_proof):
     print("MY PROOF", proof)
 
     new_proof = {"proof": int(proof)}
-    response = requests.post(
-        'https://lambda-treasure-hunt.herokuapp.com/api/bc/mine/', headers=headers, data=new_proof)
-
+    response = requests.post('https://lambda-treasure-hunt.herokuapp.com/api/bc/mine/',
+                             headers=headers, data=json.dumps(new_proof))
     print("Did I mine a coin?", response)
     res = json.loads(response.text)
     print(res)
