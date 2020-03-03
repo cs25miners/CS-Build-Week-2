@@ -35,19 +35,20 @@ def proof_of_work(last_proof):
     print("MY PROOF", proof)
    
     new_proof = {"proof": int(proof)}
-    response = requests.post('https://lambda-treasure-hunt.herokuapp.com/api/bc/mine/', headers=headers, data=new_proof)
+    response = requests.post('https://lambda-treasure-hunt.herokuapp.com/api/bc/mine/', headers=headers, data=json.dumps(new_proof))
 
     print("Did I mine a coin?", response)
     res=json.loads(response.text)  
     print(res)
     time.sleep(res['cooldown'])
     return res
+    # return proof
 
 
 def valid_proof(last_hash, proof, difficulty):
     guess = f'{last_hash}{proof}'.encode()
     guess_hash = hashlib.sha256(guess).hexdigest()
-    return guess_hash[difficulty:] == int("0" * difficulty)
+    return guess_hash[:difficulty] == "0" * difficulty
 
 
 if __name__ == "__main__":
